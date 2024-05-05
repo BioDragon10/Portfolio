@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientGUI.MainPage">
+
+    <Grid RowDefinitions="25, *" ColumnDefinitions="300, *, 300" BackgroundColor="Black">
+        <VerticalStackLayout x:Name="ConnectionView" IsVisible="True" HorizontalOptions="Center"
+                             VerticalOptions="Center" Grid.RowSpan="2" Grid.ColumnSpan="3">
+            <HorizontalStackLayout>
+                <Label Text="Name:" Margin="0,0, 10, 0" TextColor="White" />
+                <Entry WidthRequest="200" x:Name="NameEntry" Completed="NameEntryCompleted"
+                       Unfocused="NameEntryUnfocused" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Server:" Margin="0,0, 10, 0" TextColor="White" />
+                <Entry WidthRequest="200" x:Name="ServerEntry" Completed="ServerEntryCompleted"
+                       Unfocused="ServerEntryUnfocused" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label Text="Port:" Margin="0,0, 10, 0" TextColor="White" />
+                <Entry WidthRequest="200" x:Name="PortEntry" Placeholder="11000" Completed="PortEntryCompleted" />
+            </HorizontalStackLayout>
+
+            <Button Text="Connect to Server" Pressed="ConnectButtonPressed" />
+        </VerticalStackLayout>
+        <Button Grid.Row="0" x:Name="SpaceButton" IsVisible="False" IsEnabled="false" Clicked="SpaceButton_Clicked"
+                Grid.ColumnSpan="3" BackgroundColor="Black" />
+        <VerticalStackLayout x:Name="StatsLabels" IsVisible="False" BackgroundColor="Black">
+            <Label x:Name="MassLabel" Text="Mass:" />
+            <Label x:Name="LocationLabel" Text="Location:" />
+        </VerticalStackLayout>
+        <Border Grid.Row="1" Grid.Column="1" x:Name="GameView" IsVisible="False" StrokeThickness="0"
+                SizeChanged="GameViewSizeChanged">
+            <GraphicsView
+                x:Name="PlaySurface">
+                <GraphicsView.GestureRecognizers>
+                    <PointerGestureRecognizer PointerMoved="MouseMoved" />
+                </GraphicsView.GestureRecognizers>
+            </GraphicsView>
+        </Border>
+        <ScrollView Grid.Column="2" Grid.Row="1">
+            <Label x:Name="LeaderBoardLabel" BackgroundColor="Black" TextColor="AliceBlue"
+                   HorizontalTextAlignment="Center" />
+        </ScrollView>
+    </Grid>
+</ContentPage>
